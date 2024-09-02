@@ -15,7 +15,6 @@ import {
 } from "@material-tailwind/react";
 
 export function signup() {
-
   const handleChange = async (e) => {
     setdata({ ...data, [e.target.id]: e.target.value });
   };
@@ -25,24 +24,23 @@ export function signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const response = await fetch("/api/sign-up", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-    // const response = await fetch("/api/sign-up", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // });
-
-    // if (response.ok) {
-    //   const datas = await response.json();
-    //   console.log("Data:", datas);
-    //   toast.success("Signup successful!");
-    //   navigate("/sign-in");
-    // } else {
-    //   console.error("Error:", response.status, response.statusText);
-    //   toast.error("Signup failed: " + response.statusText);
-    // }
+    if (response.ok) {
+      const datas = await response.json();
+      console.log("Data:", datas);
+      toast.success("Signup successful!");
+      navigate("/sign-in");
+    } else {
+      console.error("Error:", response.status, response.statusText);
+      toast.error("Signup failed: " + response.statusText);
+    }
   };
 
   return (
@@ -99,7 +97,17 @@ export function signup() {
                   labelProps={{}}
                   onChange={handleChange}
                 />
-              
+
+                <Input
+                  id="phone"
+                  color="gray"
+                  size="lg"
+                  type="number"
+                  placeholder="phone"
+                  className="p-3 mt-2 rounded-lg !w-full placeholder:!opacity-100 focus:!border-t-primary !border-t-blue-gray-200"
+                  labelProps={{}}
+                  onChange={handleChange}
+                />
 
                 <Input
                   id="password"
