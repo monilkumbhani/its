@@ -1,0 +1,26 @@
+.pads a{
+    padding: 5px 75px;
+    justify-content: center;
+}
+.active {
+    color: #5a5a5a;
+    border-bottom: 2px solid #333;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+        color: #7b8ea3;
+    }
+  }
+
+
+ li a:hover {
+        color: #7b8ea3;
+    }
+ 
+ li a{
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+    padding: 10px;
+
+ }
