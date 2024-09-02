@@ -9,6 +9,7 @@ router.get("/api/sign-up", function (req, res) {
 });
 
 router.post("/api/sign-up", async (req, res) => {
+  // Extract user data from request body
   const { name, email, password, phone } = req.body;
   const hashedPassword = await bcryptjs.hash(password, 10);
   const newUser = new User({ name, email, password: hashedPassword, phone, });
