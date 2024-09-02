@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import signup from "../api/Routes/signup.router.js";
-// import router from './Routes/Signin.routeres.js';
+import router from './Routes/Signin.routeres.js';
 
 dotenv.config(); 
 
@@ -25,4 +25,4 @@ app.listen(3000, () => {
 });
 
 app.use(signup)
-// app.use(router)
+app.use(router)

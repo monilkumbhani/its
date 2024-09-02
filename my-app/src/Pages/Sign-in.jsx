@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 // } from "../Redux/UserSlice.js";
 
 // import { useDispatch } from "react-redux";
+// const dispatch = useDispatch();
 
 import {
   Card,
@@ -24,38 +25,31 @@ import { Link } from "react-router-dom";
 
 export function login() {
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
   const [value, setValue] = useState("");
   const handleChange = (e) => {
     setValue({ ...value, [e.target.id]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   // dispatch(signInStart());
-    //   const res = await fetch("/api/sign-in", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(value),
-    //   });
-    //   if (res.ok) {
-    //     toast.success("Log in successfully");
-    //     navigate("/");
-    //   } else {
-    //     console.error("Error:", res.status, res.statusText);
-    //     toast.error("Signup failed: " + res.statusText);
-    //   }
-    //   localStorage.setItem("sign",JSON.stringify(value.email));
-    // } catch (error) {
-    //   toast.error("Failed to log in: " + error.message);
-    //   // dispatch(signInFailure(error.message));
-
-    // }
-
-   
+    try {
+      const res = await fetch("/api/sign-in", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(value),
+      });
+      if (res.ok) {
+        toast.success("Log in successfully");
+        navigate("/");
+      } else {
+        console.error("Error:", res.status, res.statusText);
+        toast.error("Signup failed: " + res.statusText);
+      }
+      localStorage.setItem("sign", JSON.stringify(value.email));
+    } catch (error) {
+      toast.error("Failed to log in: " + error.message);
+    }
   };
 
   return (
